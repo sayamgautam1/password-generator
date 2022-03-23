@@ -9,6 +9,7 @@ const passwordOptions = {
   number: "0123456789",
   symbol: "!@#$%^&*()_+~\\`|}{[]:;?><,./-=",
 };
+
 // Write password to the #password input
 function writePassword() {
   //add confim to get input from the user on their password type//
@@ -23,9 +24,17 @@ function writePassword() {
   );
   const isSymbol = confirm("Do you want yout passwword to have symbols?");
 
-  const passwordLenght = prompt(
-    "How long do you want you password to be [8>length<128] ?"
-  );
+  var passwordLength;
+
+  //check if all the fields are selcted
+  if (!isUpperCase && !isLowerCase && !isNumber && !isSymbol) {
+    alert("please select at least on type of character..");
+    return;
+  } else {
+    passwordLength = prompt(
+      "How long do you want you password to be [8>length<128] ?"
+    );
+  }
 
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
