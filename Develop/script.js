@@ -50,15 +50,13 @@ function writePassword() {
 function getPasswordPreferences() {
   //add confim to get input from the user on their password type//
   let isUpperCase = confirm(
-    "Do you want yout passwword to have uppercase letters?"
+    "Do you want yout password to have uppercase letters?"
   );
   let isLowerCase = confirm(
-    "Do you want yout passwword to have lowercase letters?"
+    "Do you want yout password to have lowercase letters?"
   );
-  let isNumber = confirm(
-    "Do you want yout passwword to have numberical value?"
-  );
-  let isSymbol = confirm("Do you want yout passwword to have symbols?");
+  let isNumber = confirm("Do you want yout password to have numberical value?");
+  let isSymbol = confirm("Do you want yout password to have symbols?");
 
   return { isUpperCase, isLowerCase, isNumber, isSymbol };
 }
