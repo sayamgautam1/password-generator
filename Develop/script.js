@@ -14,8 +14,9 @@ const passwordOptions = {
 // var isNumber;
 // var isSymbol;
 // var passwordLength = 0;
-var password;
-var passwordReturned = "";
+let length = 0;
+let password;
+let passwordReturned = "";
 
 // Write password to the #password input
 function writePassword() {
@@ -26,8 +27,9 @@ function writePassword() {
   const prefsAreValid = validatePrefrences(preferences);
 
   //get length of the password
-
-  const length = passwordLength(prefsAreValid);
+  if (prefsAreValid) {
+    length = passwordLength(prefsAreValid);
+  }
 
   // check length of the character
 
@@ -44,79 +46,81 @@ function writePassword() {
   passwordText.value = password;
 }
 
-// create a function to enter all the characters of the password
+// function to enter all the characters of the password
 
 function getPasswordPreferences() {
   //add confim to get input from the user on their password type//
-  var isUpperCase = confirm(
+  let isUpperCase = confirm(
     "Do you want yout passwword to have uppercase letters?"
   );
-  var isLowerCase = confirm(
+  let isLowerCase = confirm(
     "Do you want yout passwword to have lowercase letters?"
   );
-  var isNumber = confirm(
+  let isNumber = confirm(
     "Do you want yout passwword to have numberical value?"
   );
-  var isSymbol = confirm("Do you want yout passwword to have symbols?");
+  let isSymbol = confirm("Do you want yout passwword to have symbols?");
 
   return { isUpperCase, isLowerCase, isNumber, isSymbol };
 }
 
-// create a function to check if all the characters are selected or not
-function validatePrefrences() {
-  if (!isUpperCase && !isLowerCase && !isNumber && !isSymbol) {
+//function to check if all the characters are selected or not
+function validatePrefrences(prefences) {
+  if (
+    !prefences.isUpperCase &&
+    !prefences.isLowerCase &&
+    !prefences.isNumber &&
+    !prefences.isSymbol
+  ) {
     alert("please select at least on type of character..");
-    return false;
+    writePassword();
   } else {
     return true;
   }
 }
 
-//create a function to get the password length
-function passwordLength() {
-  if (prefsAreValid) {
+// function to get the password length
+function passwordLength(len) {
+  if (len) {
     var passwordLengthUser = prompt(
       "How long do you want you password to be [8>length<128] ?"
     );
-    return passwordLengthUser;
-  } else {
-    alert("Please enter at least one character");
-    writePassword();
   }
+  return passwordLengthUser;
 }
 
-//create a function to return if pasword length is valid or not
-function validateLength() {
-  if (length > 8 && length < 128) {
+//function to return if pasword length is valid or not
+function validateLength(passlength) {
+  if (passlength > 8 && passlength < 128) {
     return true;
   } else {
     alert("please enter a valid password length [8>length<128], ");
-    passwordLength();
+    passwordLength(length);
   }
 }
 
-//add function to geenrate password
+//function to geenrate password
 
-function generatePassword() {
+function generatePassword(pref, lengthpassword) {
   var passwordArray = [];
 
-  if (isUpperCase === true) {
+  if (pref.isUpperCase === true) {
     var upperCaseString = passwordOptions.upperCase.split("");
     passwordArray = passwordArray.concat(upperCaseString);
   }
-  if (isLowerCase === true) {
+  if (pref.isLowerCase === true) {
     var lowerCaseString = passwordOptions.lowerCase.split("");
     passwordArray = passwordArray.concat(lowerCaseString);
   }
-  if (isNumber === true) {
+  if (pref.isNumber === true) {
     var numberString = passwordOptions.number.split("");
     passwordArray = passwordArray.concat(numberString);
   }
-  if (isSymbol === true) {
+  if (pref.isSymbol === true) {
     var symbolString = passwordOptions.symbol.split("");
     passwordArray = passwordArray.concat(symbolString);
   }
-  for (i = 0; i < length; i++) {
+  for (i = 0; i < lengthpassword; i++) {
     passwordReturned +=
       passwordArray[Math.floor(Math.random() * passwordArray.length)];
   }
