@@ -27,9 +27,8 @@ function writePassword() {
   const prefsAreValid = validatePrefrences(preferences);
 
   //get length of the password
-  if (prefsAreValid) {
-    length = passwordLength(prefsAreValid);
-  }
+
+  length = passwordLength(prefsAreValid);
 
   // check length of the character
 
@@ -95,7 +94,7 @@ function validateLength(passlength) {
     return true;
   } else {
     alert("please enter a valid password length [8>length<128], ");
-    passwordLength(length);
+    writePassword();
   }
 }
 
