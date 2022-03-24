@@ -16,7 +16,7 @@ const passwordOptions = {
 // var passwordLength = 0;
 let length = 0;
 let password;
-let passwordReturned = "";
+// let passwordReturned = "";
 
 // Write password to the #password input
 function writePassword() {
@@ -99,7 +99,8 @@ function validateLength(passlength) {
 //function to geenrate password
 
 function generatePassword(pref, lengthpassword) {
-  var passwordArray = [];
+  let passwordArray = [];
+  let passwordReturned = "";
 
   if (pref.isUpperCase === true) {
     var upperCaseString = passwordOptions.upperCase.split("");
