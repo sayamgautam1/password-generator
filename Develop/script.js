@@ -88,7 +88,7 @@ function passwordLength(len) {
 
 //function to return if pasword length is valid or not
 function validateLength(passlength) {
-  if (passlength >= 8 && passlength <= 128) {
+  if (passlength >= 4 && passlength <= 128) {
     return true;
   } else {
     alert("please enter a valid password length [8>=length<=128], ");
@@ -147,17 +147,14 @@ function generatePassword(pref, lengthpassword) {
         symbolArray[Math.floor(Math.random() * symbolArray.length)];
     }
   }
-  console.log(trueCount);
-  console.log(passwordReturned);
-  for (i = 0; i < lengthpassword; i++) {
+
+  for (i = 0; i < lengthpassword - trueCount; i++) {
     passwordReturned +=
-      passwordArray[
-        Math.floor(Math.random() * passwordArray.length - trueCount)
-      ];
+      passwordArray[Math.floor(Math.random() * passwordArray.length)];
   }
-  console.log(passwordReturned);
+
   let passwordReturnedArray = passwordReturned.split("");
-  console.log(passwordReturnedArray);
+
   for (i = passwordReturnedArray.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     var tempPassword = passwordReturnedArray[i];
