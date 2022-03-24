@@ -80,7 +80,7 @@ function validatePrefrences(prefences) {
 function passwordLength(len) {
   if (len) {
     var passwordLengthUser = prompt(
-      "How long do you want you password to be [8>length<128] ?"
+      "How long do you want you password to be [8>=length<=128] ?"
     );
   }
   return passwordLengthUser;
@@ -88,10 +88,10 @@ function passwordLength(len) {
 
 //function to return if pasword length is valid or not
 function validateLength(passlength) {
-  if (passlength > 8 && passlength < 128) {
+  if (passlength >= 8 && passlength <= 128) {
     return true;
   } else {
-    alert("please enter a valid password length [8>length<128], ");
+    alert("please enter a valid password length [8>=length<=128], ");
     writePassword();
   }
 }
