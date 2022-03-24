@@ -101,26 +101,59 @@ function validateLength(passlength) {
 function generatePassword(pref, lengthpassword) {
   let passwordArray = [];
   let passwordReturned = "";
+  let upperCaseArray = [];
+  let lowerCaseArray = [];
+  let numberArray = [];
+  let symbolArray = [];
+  let trueCount = 0;
 
   if (pref.isUpperCase === true) {
+    trueCount += 1;
     var upperCaseString = passwordOptions.upperCase.split("");
     passwordArray = passwordArray.concat(upperCaseString);
+    upperCaseArray = upperCaseArray.concat(upperCaseString);
+    for (i = upperCaseArray.length - 1; i < upperCaseArray.length; i++) {
+      passwordReturned +=
+        upperCaseArray[Math.floor(Math.random() * upperCaseArray.length)];
+    }
   }
   if (pref.isLowerCase === true) {
+    trueCount += 1;
     var lowerCaseString = passwordOptions.lowerCase.split("");
     passwordArray = passwordArray.concat(lowerCaseString);
+    lowerCaseArray = lowerCaseArray.concat(lowerCaseString);
+    for (i = lowerCaseArray.length - 1; i < lowerCaseArray.length; i++) {
+      passwordReturned +=
+        lowerCaseArray[Math.floor(Math.random() * lowerCaseArray.length)];
+    }
   }
   if (pref.isNumber === true) {
+    trueCount += 1;
     var numberString = passwordOptions.number.split("");
     passwordArray = passwordArray.concat(numberString);
+    numberArray = numberArray.concat(numberString);
+    for (i = numberArray.length - 1; i < numberArray.length; i++) {
+      passwordReturned +=
+        numberArray[Math.floor(Math.random() * numberArray.length)];
+    }
   }
   if (pref.isSymbol === true) {
+    trueCount += 1;
     var symbolString = passwordOptions.symbol.split("");
     passwordArray = passwordArray.concat(symbolString);
+    symbolArray = symbolArray.concat(symbolString);
+    for (i = symbolArray.length - 1; i < symbolArray.length; i++) {
+      passwordReturned +=
+        symbolArray[Math.floor(Math.random() * symbolArray.length)];
+    }
   }
+  console.log(trueCount);
+  console.log(passwordReturned);
   for (i = 0; i < lengthpassword; i++) {
     passwordReturned +=
-      passwordArray[Math.floor(Math.random() * passwordArray.length)];
+      passwordArray[
+        Math.floor(Math.random() * passwordArray.length - trueCount)
+      ];
   }
   return passwordReturned;
 }
