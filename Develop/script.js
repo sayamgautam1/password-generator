@@ -155,7 +155,16 @@ function generatePassword(pref, lengthpassword) {
         Math.floor(Math.random() * passwordArray.length - trueCount)
       ];
   }
-  return passwordReturned;
+  console.log(passwordReturned);
+  let passwordReturnedArray = passwordReturned.split("");
+  console.log(passwordReturnedArray);
+  for (i = passwordReturnedArray.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    var tempPassword = passwordReturnedArray[i];
+    passwordReturnedArray[i] = passwordReturnedArray[j];
+    passwordReturnedArray[j] = tempPassword;
+  }
+  return passwordReturnedArray.join("");
 }
 
 // Add event listener to generate button
