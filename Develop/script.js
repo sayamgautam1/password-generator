@@ -88,7 +88,7 @@ function passwordLength(len) {
 
 //function to return if pasword length is valid or not
 function validateLength(passlength) {
-  if (passlength >= 4 && passlength <= 128) {
+  if (passlength >= 8 && passlength <= 128) {
     return true;
   } else {
     alert("please enter a valid password length [8>=length<=128], ");
