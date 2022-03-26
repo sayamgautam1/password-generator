@@ -15,29 +15,39 @@ const passwordOptions = {
 // var isSymbol;
 // var passwordLength = 0;
 let length = 0;
-let password;
+let password = "";
+let preferences = {};
 // let passwordReturned = "";
 
 // Write password to the #password input
 function writePassword() {
-  //function to get prefences from the user
-  const preferences = getPasswordPreferences();
-
-  // check the preferences via another function
-  const prefsAreValid = validatePrefrences(preferences);
-
   //get length of the password
 
-  length = passwordLength(prefsAreValid);
-
+  length = passwordLength();
   // check length of the character
 
   const lengthIsValid = validateLength(length);
 
-  // generate password if everything is valid
+  // get password prefences if everything is valid
 
   if (lengthIsValid === true) {
+    preferences = getPasswordPreferences();
+  } else {
+    alert("please enter a valid length");
+    writePassword();
+  }
+
+  // check the preferences via another function
+  const prefsAreValid = validatePrefrences(preferences);
+
+  // generate password if pref are valid
+
+  if (prefsAreValid) {
     password = generatePassword(preferences, length);
+  } else {
+    preferences = {};
+    alert("please select at least one type of character..");
+    writePassword();
   }
 
   var passwordText = document.querySelector("#password");
@@ -69,20 +79,17 @@ function validatePrefrences(prefences) {
     !prefences.isNumber &&
     !prefences.isSymbol
   ) {
-    alert("please select at least on type of character..");
-    writePassword();
+    return false;
   } else {
     return true;
   }
 }
 
 // function to get the password length
-function passwordLength(len) {
-  if (len) {
-    var passwordLengthUser = prompt(
-      "How long do you want you password to be [8>=length<=128] ?"
-    );
-  }
+function passwordLength() {
+  var passwordLengthUser = prompt(
+    "How long do you want you password to be [8>=length<=128] ?"
+  );
   return passwordLengthUser;
 }
 
@@ -91,8 +98,7 @@ function validateLength(passlength) {
   if (passlength >= 8 && passlength <= 128) {
     return true;
   } else {
-    alert("please enter a valid password length [8>=length<=128], ");
-    writePassword();
+    return false;
   }
 }
 
